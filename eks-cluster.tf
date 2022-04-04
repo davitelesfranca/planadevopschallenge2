@@ -14,17 +14,17 @@ module "eks" {
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "t3a.large"
+      instance_type                 = var.ec2_instance_type
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-      asg_desired_capacity          = 2
+      asg_desired_capacity          = var.asg_desired_capacity_wg1
     },
     {
       name                          = "worker-group-2"
-      instance_type                 = "t3a.large"
+      instance_type                 = var.ec2_instance_type
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 1
+      asg_desired_capacity          = var.asg_desired_capacity_wg2
     },
   ]
 }

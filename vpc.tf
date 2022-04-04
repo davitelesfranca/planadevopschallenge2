@@ -1,8 +1,3 @@
-variable "region" {
-  default     = "us-east-1"
-  description = "AWS region"
-}
-
 provider "aws" {
   region = var.region
 }
@@ -22,11 +17,11 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.2.0"
 
-  name                 = "planadevopschallenge2-vpc"
-  cidr                 = "10.0.0.0/16"
+  name                 = var.vpc_name
+  cidr                 = var.vpc_cidr
   azs                  = data.aws_availability_zones.available.names
-  private_subnets      = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets       = ["10.0.3.0/24", "10.0.4.0/24"]
+  private_subnets      = var.private_subnets
+  public_subnets       = var.public_subnets
   enable_nat_gateway   = true
   single_nat_gateway   = true
   enable_dns_hostnames = true
