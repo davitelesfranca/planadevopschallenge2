@@ -43,7 +43,3 @@
            - terraform validate
            - terraform plan
            - terraform apply
-           
-           _**Be careful with the instance type that are setting on variable.tf file (lines 99 and 121). This can exceed the free tier limit.**_
-   
-        
